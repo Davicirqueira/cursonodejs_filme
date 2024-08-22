@@ -1,6 +1,11 @@
 import mysql from 'mysql2/promise';
 
-//con = conectio; como as vezes a conexão pode demorar alguns segundos, introduzimos o "await"
+/*con = conection; como as vezes a conexão pode demorar alguns segundos, introduzimos o "await"
+
+informações sensíveis fivam no arquivo .env; EXEMPLO: nome do BD, nome do usuário, senha, 
+endereço da máquina.
+*/
+
 let con = await mysql.createConnection({
 
     host: process.env.MYSQL_HOST,
@@ -9,6 +14,7 @@ let con = await mysql.createConnection({
     database: process.env.MYSQL_DB
 
 })
+
 
 console.log('-> Conexão com BD realizada!')
 
