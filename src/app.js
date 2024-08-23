@@ -3,14 +3,15 @@ import './utils/global.js'
 import 'dotenv/config.js';
 import express from 'express';
 import cors from 'cors';
+import adicionarRotas from './rotas.js';
 
-import filmeController from './controller/filmeController.js'
 
 const servidor = express();
 servidor.use(express.json());
 servidor.use(cors());        
 
-servidor.use(filmeController);
+//configura os controllers
+adicionarRotas(servidor)
 
 
 const PORTA = process.env.PORTA;
