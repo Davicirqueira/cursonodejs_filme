@@ -1,6 +1,6 @@
 
 
-export default function validarNovoFilme(filmeObj){
+export  function validarNovoFilme(filmeObj){
 
     if(!filmeObj.nome){
 
@@ -38,4 +38,25 @@ export default function validarNovoFilme(filmeObj){
 
     }
     
+}
+
+
+export function validarFilmeUnico(registros){
+
+    if(registros.length == 0){
+
+        throw new Error('Filme não encontrado')
+
+    }
+
+}
+
+export function validarFilmeIgual(registros){
+
+    if(registros.length > 0){
+
+        throw new Error('Já existe filme cadastrado com este nome')
+
+    }
+
 }
