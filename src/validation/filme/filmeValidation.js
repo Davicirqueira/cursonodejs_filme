@@ -1,6 +1,6 @@
 
 
-export  function validarNovoFilme(filmeObj){
+export  function validarCamposObrigatoriosFilme(filmeObj){
 
     if(!filmeObj.nome){
 
@@ -55,7 +55,7 @@ export function validarFilmeIgual(registros){
 
     if(registros.length > 0){
 
-        throw new Error('Já existe filme cadastrado com este nome')
+        throw new Error('Já existe um filme cadastrado com este nome')
 
     }
 

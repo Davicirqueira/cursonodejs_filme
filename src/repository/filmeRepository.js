@@ -86,3 +86,67 @@ export async function consultarFilmePorId(id){
     return registros;
 
 }
+
+//primeiro contato com o affectedRows, função que conta quantas linhas serão afetadas/aletradas.
+export async function alterarFilme(filme, id){
+
+    let comando = `
+        UPDATE tb_filme
+            SET nm_filme = ? ,
+                ds_sinopse = ? ,    
+                vl_avaliacao = ? ,
+                dt_lancamento = ? ,
+                bt_disponivel = ?
+            WHERE id_filme = ?
+    `
+
+    let resposta = await con.query(comando, [
+        filme.nome, 
+        filme.sinopse, 
+        filme.avaliacao, 
+        filme.lancamento, 
+        filme.disponivel, 
+        id]);
+
+    let info = resposta[0];
+
+    let linhasAfetadas = info.affectedRows; //Mostra quantas linhas serão afetadas neste upadte. 
+
+    return linhasAfetadas;
+
+}
+
+export async function deletarFilme(id){
+
+    let comando = `
+        DELETE FROM tb_filme where id_filme = ?
+    `
+
+    let resposta = await con.query(comando, [id]);
+
+    let info = resposta[0];
+
+    let linhasAfetadas = info.affectedRows; //a mesma função que ALTERA também é usada para DELETAR.
+
+    return linhasAfetadas;
+
+}
+
+
+export async function alterarCapaFilme(id, caminho){
+
+    let comando = `
+    UPDATE tb_filme
+        SET img_filme = ? 
+        WHERE id_filme = ?              
+    `
+ 
+    let resposta = con.query(comando, [caminho, id]);
+
+    let info = resposta[0];
+
+    let linhasAfetadas = info.affectedRows;
+
+    return linhasAfetadas;
+
+}
